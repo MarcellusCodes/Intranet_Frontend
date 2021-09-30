@@ -28,8 +28,6 @@ import bewegung from "../src/static/images/bewegung.png";
 import ernährung from "../src/static/images/ernährung.jpg";
 
 export default function Bgm() {
-
-  
   const accordion_data = [
     {
       id: 1,
@@ -145,6 +143,7 @@ export default function Bgm() {
       ],
     },
   ];
+
   return (
     <>
       <Navbar />
