@@ -11,13 +11,21 @@
     "@mui/icons-material": "^5.0.1",
     "@mui/material": "next",
     "@mui/styles": "^5.0.1",
+    "@reduxjs/toolkit": "^1.6.1",
+    "@swiper/core": "^0.0.21",
     "clsx": "latest",
     "framer-motion": "^4.1.17",
     "next": "latest",
+    "nextjs-breadcrumbs": "^1.1.9",
     "prop-types": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "react-query": "^3.24.4"
+    "react-id-swiper": "^4.0.0",
+    "react-query": "^3.24.4",
+    "react-redux": "^7.2.5",
+    "sass": "^1.42.1",
+    "simplebar-react": "^2.3.6",
+    "swiper": "^7.0.6"
   },
   "scripts": {
     "dev": "next",

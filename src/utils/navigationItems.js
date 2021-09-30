@@ -68,7 +68,7 @@ const navigationItems = [
       {
         id: 3,
         name: "BGM",
-        href: "/mitarbeiter/bgm",
+        href: "/bgm",
       },
       {
         id: 4,
