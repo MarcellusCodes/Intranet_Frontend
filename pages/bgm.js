@@ -30,7 +30,6 @@ import ActionSection from "../src/components/sections/actionSection";
 import { useQuery } from "react-query";
 
 export default function Bgm({ bgm_data }) {
-  const errors = true;
   const { isLoading, data, error } = useQuery(
     "bgm_data",
     () =>
@@ -166,7 +165,7 @@ export default function Bgm({ bgm_data }) {
       </>
     );
 
-  if (errors)
+  if (error)
     return (
       <>
         <ActionSection
