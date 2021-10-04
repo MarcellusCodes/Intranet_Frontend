@@ -21,7 +21,7 @@ const CarouselText = ({ title, caption, link }) => {
         <Typography variant="h6" component="h4">
           {title}
         </Typography>
-        <PrimaryText>{caption}</PrimaryText>
+        <PrimaryText sx={{ textAlign: "center" }}>{caption}</PrimaryText>
         <Link href={link}>
           <Button variant="contained">Hier Klicken</Button>
         </Link>

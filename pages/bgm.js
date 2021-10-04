@@ -26,8 +26,19 @@ import rad from "../src/static/images/rad.jpg";
 import kajak from "../src/static/images/kajak.jpg";
 import bewegung from "../src/static/images/bewegung.png";
 import ernährung from "../src/static/images/ernährung.jpg";
+import ActionSection from "../src/components/sections/actionSection";
+import { useQuery } from "react-query";
 
-export default function Bgm() {
+export default function Bgm({ bgm_data }) {
+  const errors = true;
+  const { isLoading, data, error } = useQuery(
+    "bgm_data",
+    () =>
+      fetch(`http://localhost:1337/rubrikens?name=bgm`).then((res) =>
+        res.json()
+      ),
+    { initialData: bgm_data }
+  );
   const accordion_data = [
     {
       id: 1,
@@ -144,6 +155,28 @@ export default function Bgm() {
     },
   ];
 
+  if (isLoading)
+    return (
+      <>
+        <ActionSection
+          pageIcon={<CorporateFareOutlinedIcon fontSize="large" />}
+          pageTitle={"BETRIEBLICHES GESUNDHEITSMANAGEMENT"}
+          action="loading"
+        />
+      </>
+    );
+
+  if (errors)
+    return (
+      <>
+        <ActionSection
+          pageIcon={<CorporateFareOutlinedIcon fontSize="large" />}
+          pageTitle={"BETRIEBLICHES GESUNDHEITSMANAGEMENT"}
+          action="error"
+        />
+      </>
+    );
+
   return (
     <>
       <Navbar />
@@ -152,7 +185,7 @@ export default function Bgm() {
         pageTitle={"BETRIEBLICHES GESUNDHEITSMANAGEMENT"}
       >
         <Container maxWidth="lg">
-          <Carousel />
+          {data && <Carousel data={data[0]} />}
         </Container>
         <SectionTitle
           sx={{ marginTop: 10, marginBottom: 5, textAlign: "center" }}
@@ -211,4 +244,11 @@ export default function Bgm() {
       </NavigationLayout>
     </>
   );
+}
+
+export async function getServerSideProps() {
+  const res = await fetch(`http://localhost:1337/rubrikens?name=bgm`);
+  const bgm_data = await res.json();
+
+  return { props: { bgm_data } };
 }

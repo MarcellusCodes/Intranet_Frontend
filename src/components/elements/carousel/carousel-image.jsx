@@ -4,10 +4,11 @@ const CarouselImage = ({ src, alt }) => {
   return (
     <>
       <Image
-        src={src}
+        src={`http://localhost:1337${src}`}
         alt={alt}
         objectFit="cover"
-        className={{ height: "100%", width: "100%", cursor: "grab" }}
+        width="900px"
+        height="450px"
       />
     </>
   );

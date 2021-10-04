@@ -1,11 +1,12 @@
 import CircularProgress from "@mui/material/CircularProgress";
+import ErrorOutlineOutlinedIcon from "@mui/icons-material/ErrorOutlineOutlined";
 import Box from "@mui/material/Box";
 import NavigationLayout from "../navigationLayout";
 import Navbar from "../elements/nav/navbar";
 import PrimaryTitle from "../elements/typography/primaryTitle";
 import { Container } from "@mui/material";
 
-const LoadingSection = ({ pageIcon, pageTitle }) => {
+const ActionSection = ({ pageIcon, pageTitle, action }) => {
   return (
     <>
       <Navbar />
@@ -29,8 +30,21 @@ const LoadingSection = ({ pageIcon, pageTitle }) => {
               boxShadow: 1,
             }}
           >
-            <PrimaryTitle>Lade Daten...</PrimaryTitle>
-            <CircularProgress color="primary" sx={{ marginTop: 5 }} />
+            {action === "loading" ? (
+              <>
+                <PrimaryTitle>Lade Daten...</PrimaryTitle>
+                <CircularProgress color="primary" sx={{ marginTop: 5 }} />
+              </>
+            ) : (
+              <>
+                <PrimaryTitle>Problem beim Laden der Daten...</PrimaryTitle>
+                <ErrorOutlineOutlinedIcon
+                  color="error"
+                  sx={{ marginTop: 5 }}
+                  sx={{ fontSize: 50 }}
+                />
+              </>
+            )}
           </Box>
         </Container>
       </NavigationLayout>
@@ -38,4 +52,4 @@ const LoadingSection = ({ pageIcon, pageTitle }) => {
   );
 };
 
-export default LoadingSection;
+export default ActionSection;
