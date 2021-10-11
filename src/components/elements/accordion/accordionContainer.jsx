@@ -2,12 +2,12 @@ import Accordion from "@mui/material/Accordion";
 import AccordionTitle from "./accordionTitle";
 import AccordionInfo from "./accordionInfo";
 
-const AccordionContainer = ({ accordion_details }) => {
+const AccordionContainer = ({ data, pageTitle }) => {
   return (
     <>
       <Accordion>
-        <AccordionTitle title={accordion_details.title} />
-        <AccordionInfo details={accordion_details.details} />
+        <AccordionTitle title={pageTitle} />
+        <AccordionInfo data={data} />
       </Accordion>
     </>
   );

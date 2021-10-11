@@ -9,7 +9,6 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 
 import Image from "next/image";
-import AppLogo from "../../../static/images/app_logo.jpg";
 
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
@@ -56,7 +55,7 @@ export default function Navbar() {
           <Toolbar>
             <Link href="/">
               <Image
-                src={AppLogo}
+                src={"/app_logo.jpg"}
                 alt="Logo DRK Rostock Intranet"
                 width={60}
                 height={30}

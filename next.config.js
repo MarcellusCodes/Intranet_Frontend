@@ -1,6 +1,6 @@
 module.exports = {
   images: {
     domains: ["localhost"],
-    hostname: ["localhost", "localhost:1337"],
+    hostname: ["localhost", "localhost:8055"],
   },
 };

@@ -36,6 +36,7 @@ const ModalMain = ({ title, content }) => {
               width: "auto",
               bgcolor: "background.default",
               boxShadow: 24,
+              borderRadius: 1,
             }}
           >
             <Box sx={{ p: 2, borderBottom: 1, borderColor: "secondary.main" }}>
@@ -43,7 +44,13 @@ const ModalMain = ({ title, content }) => {
                 {title}
               </Typography>
             </Box>
-            <Box sx={{ p: 2 }}>{content}</Box>
+            <Box
+              sx={{
+                p: 2,
+              }}
+            >
+              {content}
+            </Box>
             <Box
               sx={{
                 p: 2,

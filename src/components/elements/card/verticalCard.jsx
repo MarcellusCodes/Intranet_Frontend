@@ -18,6 +18,8 @@ import bewegung from "../../../static/images/bewegung.png";
 import Button from "@mui/material/Button";
 import SecondaryText from "../typography/secondaryText";
 import Scrollbar from "../scrollbar";
+import Content from "../../content";
+import createMarkUp from "../../../utils/createMarkUp";
 
 import { useDispatch } from "react-redux";
 import {
@@ -30,7 +32,7 @@ const VerticalCard = ({ data }) => {
   const dispatch = useDispatch();
 
   const showContent = () => {
-    dispatch(setTitle(data.title));
+    dispatch(setTitle(data.titel));
     dispatch(setContent(data.content));
     dispatch(openModal());
   };
@@ -39,11 +41,11 @@ const VerticalCard = ({ data }) => {
     <>
       <Card sx={{ boxShadow: 1 }}>
         <CardHeader
-          title={data.title}
+          title={data.titel}
           sx={{ height: "20%", background: "#222831", color: "#fffffe" }}
         />
         <Image
-          src={data.image}
+          src={`http://localhost:8055/assets/${data.bild.filename_disk}`}
           alt={"Card Image"}
           layout="responsive"
           width="100%"
@@ -51,7 +53,9 @@ const VerticalCard = ({ data }) => {
         />
         <CardContent sx={{ height: "auto" }}>
           <Scrollbar maxHeight={60}>
-            <SecondaryText>{data.text}</SecondaryText>
+            <SecondaryText>
+              <Content content={createMarkUp(data.text)} />
+            </SecondaryText>
           </Scrollbar>
         </CardContent>
         <CardActions disableSpacing>

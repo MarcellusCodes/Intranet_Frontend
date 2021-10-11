@@ -4,7 +4,7 @@ import { Button } from "@mui/material";
 const CtaButton = ({ cta, href, variant }) => {
   return (
     <>
-      {cta === "" ? (
+      {href === null ? (
         ""
       ) : (
         <Link href={href}>

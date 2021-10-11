@@ -28,12 +28,14 @@ import bewegung from "../src/static/images/bewegung.png";
 import ernährung from "../src/static/images/ernährung.jpg";
 import ActionSection from "../src/components/sections/actionSection";
 import { useQuery } from "react-query";
+import createMarkUp from "../src/utils/createMarkUp";
+import Content from "../src/components/content";
 
 export default function Bgm({ bgm_data }) {
   const { isLoading, data, error } = useQuery(
     "bgm_data",
     () =>
-      fetch(`http://localhost:1337/rubrikens?name=bgm`).then((res) =>
+      fetch(`http://localhost:8055/items/rubriken/1?fields=*.*.*`).then((res) =>
         res.json()
       ),
     { initialData: bgm_data }
@@ -41,67 +43,43 @@ export default function Bgm({ bgm_data }) {
   const accordion_data = [
     {
       id: 1,
-      title: "Corona Richtlinien",
-      details: [
-        {
-          id: 1,
-          info: "Die DRK Bewegungskurse können nun endlich wieder stattfinden. Dies ist jedoch mit folgenden Auflagen verbunden. Die Auflagen finden Sie in ausführlicher Form hier. In dem Reiter „DRK-Bewegungskurse“ finden Sie die aktuellen Bewegungsangebote, Termine und Zeiten. Falls Sie sich für einen oder mehrere der Kurse interessieren, melden Sie sich bitte über das BGM an.",
-          href: "/",
-          cta: "Hier klicken",
-        },
-        {
-          id: 2,
-          info: "Auch ist es weiterhin möglich, online zu trainieren – mit CYBERFITNESS. Dank der BARMER für Sie als Mitarbeiter/in kostenlos. Alle Informationen zur Anmeldung finden Sie hier",
-          href: "",
-          cta: "",
-        },
-        {
-          id: 3,
-          info: "Die Fitnessstudios Clever Fit und FitX sind wieder geöffnet. Achten Sie auf die Auflagen. Diese finden Sie auf deren jeweiligen Homepages.",
-          href: "",
-          cta: "",
-        },
-        {
-          id: 4,
-          info: "Das Fitnessstudio FitnessFirst ist dauerhaft geschlossen und öffnet nicht mehr.",
-          href: "",
-          cta: "",
-        },
-        {
-          id: 5,
-          info: "Die Gesundheitsanbieter PSV Rostock e. V. und HSG e. V. bieten auch wieder unter Auflagen Kurse an. Bei Interesse rufen Sie bitte vorher an.",
-          href: "",
-          cta: "",
-        },
-        {
-          id: 6,
-          info: "Das Trihotel ist noch nicht geöffnet. Wir bekommen kurzfristig eine Info",
-          href: "",
-          cta: "",
-        },
-        {
-          id: 7,
-          info: " Lauf- und Wanderveranstaltungen finden wieder statt. Melden Sie sich für eine Veranstaltung an und bekommen Sie 20 € zurück. Alle Veranstaltungen finden Sie im Reiter „Lauf- und Wanderveranstaltungen“",
-          href: "",
-          cta: "",
-        },
-      ],
-    },
-  ];
-  const horizontalcard_data = [
-    {
-      id: 1,
-      image: rad,
-      title: "Mit dem Rad unterwegs",
-      text: "Drei Monate sind um und es wurden genug Kilometer und Tage gesammelt. Wir losen diesen Monat noch die Gewinner:innen der 5 Gutscheine aus und veröffentlichen hier die glücklichen Radler:innen: - Gewinner:innen folgen -",
+      info: "Die DRK Bewegungskurse können nun endlich wieder stattfinden. Dies ist jedoch mit folgenden Auflagen verbunden. Die Auflagen finden Sie in ausführlicher Form hier. In dem Reiter „DRK-Bewegungskurse“ finden Sie die aktuellen Bewegungsangebote, Termine und Zeiten. Falls Sie sich für einen oder mehrere der Kurse interessieren, melden Sie sich bitte über das BGM an.",
       href: "/",
-      cta: "Mehr Erfahren",
+      cta: "Hier klicken",
     },
     {
       id: 2,
-      image: kajak,
-      title: "SUP",
-      text: "Das SUPen und Kajak fahren auf der Warnow, umringt von der schönen Natur und den zahlreichen Tieren, neigt sich dem Ende. Sie haben aber weiterhin Interesse zu SUPen und überlegen sich sogar selbst ein Board anzuschaffen? Oder Sie waren aus Zeitgründen gar nicht erst im Kurs und möchten trotzdem die Grundtechniken lernen?",
+      info: "Auch ist es weiterhin möglich, online zu trainieren – mit CYBERFITNESS. Dank der BARMER für Sie als Mitarbeiter/in kostenlos. Alle Informationen zur Anmeldung finden Sie hier",
+      href: "",
+      cta: "",
+    },
+    {
+      id: 3,
+      info: "Die Fitnessstudios Clever Fit und FitX sind wieder geöffnet. Achten Sie auf die Auflagen. Diese finden Sie auf deren jeweiligen Homepages.",
+      href: "",
+      cta: "",
+    },
+    {
+      id: 4,
+      info: "Das Fitnessstudio FitnessFirst ist dauerhaft geschlossen und öffnet nicht mehr.",
+      href: "",
+      cta: "",
+    },
+    {
+      id: 5,
+      info: "Die Gesundheitsanbieter PSV Rostock e. V. und HSG e. V. bieten auch wieder unter Auflagen Kurse an. Bei Interesse rufen Sie bitte vorher an.",
+      href: "",
+      cta: "",
+    },
+    {
+      id: 6,
+      info: "Das Trihotel ist noch nicht geöffnet. Wir bekommen kurzfristig eine Info",
+      href: "",
+      cta: "",
+    },
+    {
+      id: 7,
+      info: " Lauf- und Wanderveranstaltungen finden wieder statt. Melden Sie sich für eine Veranstaltung an und bekommen Sie 20 € zurück. Alle Veranstaltungen finden Sie im Reiter „Lauf- und Wanderveranstaltungen“",
       href: "",
       cta: "",
     },
@@ -184,7 +162,7 @@ export default function Bgm({ bgm_data }) {
         pageTitle={"BETRIEBLICHES GESUNDHEITSMANAGEMENT"}
       >
         <Container maxWidth="lg">
-          {data && <Carousel data={data[0]} />}
+          <Carousel data={data.data.karussell} />
         </Container>
         <SectionTitle
           sx={{ marginTop: 10, marginBottom: 5, textAlign: "center" }}
@@ -192,15 +170,13 @@ export default function Bgm({ bgm_data }) {
           Aktuelle BGM-Aktionen
         </SectionTitle>
         <Container maxWidth="md" sx={{ marginBottom: 10 }}>
-          {accordion_data.map((data) => (
-            <AccordionContainer accordion_details={data} />
-          ))}
+          <AccordionContainer data={data.data.news} pageTitle={"Bgm News"} />
         </Container>
         <Grid container spacing={4} columns={{ xs: 4, sm: 8, md: 16 }}>
-          {horizontalcard_data.map((extracted_data) => (
+          {data.data.horizontal_karten.map((data) => (
             <>
               <Grid item xs={4} sm={8} md={8}>
-                <HorizontalCard data={extracted_data} />
+                <HorizontalCard data={data} />
               </Grid>
             </>
           ))}
@@ -211,9 +187,9 @@ export default function Bgm({ bgm_data }) {
           columns={{ xs: 4, sm: 12, md: 15, lg: 24 }}
           sx={{ marginTop: 5 }}
         >
-          {verticalcard_data.map((extracted_data) => (
+          {data.data.vertikal_karten.map((data) => (
             <Grid item xs={4} sm={6} md={5} lg={6}>
-              <VerticalCard data={extracted_data} />
+              <VerticalCard data={data} />
             </Grid>
           ))}
         </Grid>
@@ -226,19 +202,8 @@ export default function Bgm({ bgm_data }) {
             borderRadius: 1,
           }}
         >
-          <PrimaryText>
-            Haben Sie Fragen oder Anregungen? <br /> Dann nehmen Sie gerne
-            Kontakt zu unserem Betrieblichen Gesundheitsmanagement auf:
-          </PrimaryText>
-          <br />
-          <br />
-          <PrimaryText>
-            <strong>
-              Catrin Gärtner und Kathrin Holm <br /> Betriebliches
-              Gesundheitsmanagement <br /> Tel: 0381 24279 120 <br />
-              <Link href="mailto:k.holm@drk-rostock.de">Kathrin Holm</Link>
-            </strong>
-          </PrimaryText>
+          <PrimaryText></PrimaryText>
+          <Content content={createMarkUp(data.data.footer[0].content)} />
         </Box>
       </NavigationLayout>
     </>
@@ -246,7 +211,9 @@ export default function Bgm({ bgm_data }) {
 }
 
 export async function getServerSideProps() {
-  const res = await fetch(`http://localhost:1337/rubrikens?name=bgm`);
+  const res = await fetch(
+    `http://localhost:8055/items/rubriken/1?fields=*.*.*`
+  );
   const bgm_data = await res.json();
 
   return { props: { bgm_data } };

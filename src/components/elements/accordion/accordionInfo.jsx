@@ -5,20 +5,26 @@ import Divider from "@mui/material/Divider";
 import InfoIcon from "@mui/icons-material/Info";
 import Button from "@mui/material/Button";
 import PrimaryText from "../typography/primaryText";
+import Stack from "@mui/material/Stack";
 
-const AccordionInfo = ({ details }) => {
+const AccordionInfo = ({ data }) => {
+  console.log(data);
   return (
     <>
       <AccordionDetails>
-        {details.map((detail) => (
+        {data.map((data) => (
           <>
+            <Stack direction="row" alignItems="center" spacing={1}>
+              <InfoIcon sx={{ color: "#E84A5F" }} />
+              <Typography variant="h6">{data.titel}</Typography>
+            </Stack>
             <PrimaryText>
-              <InfoIcon sx={{ color: "#E84A5F" }} /> {detail.info}
-              {detail.cta === "" ? (
+              {data.info}
+              {data.cta === "" ? (
                 ""
               ) : (
-                <Link href={detail.href}>
-                  <Button>{detail.cta}</Button>
+                <Link href={data.href}>
+                  <Button>{data.cta}</Button>
                 </Link>
               )}
             </PrimaryText>

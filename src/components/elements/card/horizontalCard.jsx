@@ -11,6 +11,8 @@ import PrimaryTitle from "../typography/primaryTitle";
 import PrimaryText from "../typography/primaryText";
 import Scrollbar from "../scrollbar";
 import CtaButton from "../btn/ctaButton";
+import Content from "../../content";
+import createMarkUp from "../../../utils/createMarkUp";
 
 const HorizontalCard = ({ data }) => {
   return (
@@ -24,7 +26,7 @@ const HorizontalCard = ({ data }) => {
       >
         <Box sx={{ width: "40%" }}>
           <Image
-            src={data.image}
+            src={`http://localhost:8055/assets/${data.image.filename_disk}`}
             alt={"Card Image"}
             layout="responsive"
             width="100%"
@@ -35,9 +37,9 @@ const HorizontalCard = ({ data }) => {
         <CardContent
           sx={{ display: "flex", flexDirection: "column", width: "60%", p: 3 }}
         >
-          <PrimaryTitle>{data.title}</PrimaryTitle>
+          <PrimaryTitle>{data.titel}</PrimaryTitle>
           <Scrollbar maxHeight={140}>
-            <PrimaryText>{data.text}</PrimaryText>
+            <Content content={createMarkUp(data.content)} />
           </Scrollbar>
           <CtaButton cta={data.cta} href={data.href} variant="contained" />
         </CardContent>

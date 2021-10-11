@@ -6,6 +6,8 @@ import { useSelector } from "react-redux";
 import { selectTitle, selectContent } from "../features/ui/modalSlice";
 import ModalMain from "../components/elements/modal/modalMain";
 import ModalSection from "../components/elements/modal/modalSection";
+import Content from "./content";
+import createMarkUp from "../utils/createMarkUp";
 
 const NavigationLayout = ({ children, pageIcon, pageTitle }) => {
   const title = useSelector(selectTitle);
@@ -24,20 +26,14 @@ const NavigationLayout = ({ children, pageIcon, pageTitle }) => {
             p: 0,
             background: "#FFFFFF",
             boxShadow: 1,
+            borderRadius: 1,
           }}
         >
           <Breadcrumbs useDefaultStyle rootLabel="Home" />
         </Box>
         <ModalMain
           title={title}
-          content={content.map((extracted) => (
-            <ModalSection
-              title={extracted.title}
-              text={extracted.text}
-              cta={extracted.cta}
-              href={extracted.cta}
-            />
-          ))}
+          content={<Content content={createMarkUp(content)} />}
         />
         {children}
       </Container>
