@@ -1,29 +1,28 @@
 import * as React from "react";
 import Navbar from "../src/components/elements/nav/navbar";
 import NavigationLayout from "../src/components/navigationLayout";
-import NewReleasesIcon from "@mui/icons-material/NewReleases";
+import HelpCenterOutlinedIcon from "@mui/icons-material/HelpCenterOutlined";
 import ThreeDimensionalGrid from "../src/components/elements/layout/threeDimensionalGrid";
-import ActionSection from "../src/components/sections/actionSection";
 import InfoCard from "../src/components/elements/card/infoCard";
 import Grid from "@mui/material/Grid";
 import { useQuery } from "react-query";
 
-export default function Index({ news_data }) {
+export default function Hilfe({ hilfe_data }) {
   const { isLoading, data, error } = useQuery(
-    "news_data",
+    "hilfe_data",
     () =>
-      fetch(`http://localhost:8055/items/rubriken/2?fields=*.*.*`).then((res) =>
+      fetch(`http://localhost:8055/items/rubriken/3?fields=*.*.*`).then((res) =>
         res.json()
       ),
-    { initialData: news_data }
+    { initialData: hilfe_data }
   );
 
   if (isLoading)
     return (
       <>
         <ActionSection
-          pageIcon={<NewReleasesIcon fontSize="large" />}
-          pageTitle={"NEWS"}
+          pageIcon={<HelpCenterOutlinedIcon fontSize="large" />}
+          pageTitle={"HILFE"}
           action="loading"
         />
       </>
@@ -33,8 +32,8 @@ export default function Index({ news_data }) {
     return (
       <>
         <ActionSection
-          pageIcon={<NewReleasesIcon fontSize="large" />}
-          pageTitle={"NEWS"}
+          pageIcon={<HelpCenterOutlinedIcon fontSize="large" />}
+          pageTitle={"HILFE"}
           action="error"
         />
       </>
@@ -43,8 +42,8 @@ export default function Index({ news_data }) {
     <>
       <Navbar />
       <NavigationLayout
-        pageIcon={<NewReleasesIcon fontSize="large" />}
-        pageTitle={"NEWS"}
+        pageIcon={<HelpCenterOutlinedIcon fontSize="large" />}
+        pageTitle={"HILFE"}
       >
         <ThreeDimensionalGrid>
           {data.data.info_karten.map((data) => (
@@ -58,4 +57,13 @@ export default function Index({ news_data }) {
       </NavigationLayout>
     </>
   );
+}
+
+export async function getServerSideProps() {
+  const res = await fetch(
+    `http://localhost:8055/items/rubriken/3?fields=*.*.*`
+  );
+  const hilfe_data = await res.json();
+
+  return { props: { hilfe_data } };
 }

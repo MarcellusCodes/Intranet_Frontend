@@ -1,14 +1,8 @@
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
 import Image from "next/image";
-import Button from "@mui/material/Button";
-import Link from "../../../Link";
 import PrimaryTitle from "../typography/primaryTitle";
-import PrimaryText from "../typography/primaryText";
 import Scrollbar from "../scrollbar";
 import CtaButton from "../btn/ctaButton";
 import Content from "../../content";
@@ -21,10 +15,9 @@ const HorizontalCard = ({ data }) => {
         sx={{
           display: "flex",
           justifyContent: "space-between",
-          boxShadow: 1,
         }}
       >
-        <Box sx={{ width: "40%" }}>
+        <Box sx={{ width: "40%", p: 3 }}>
           <Image
             src={`http://localhost:8055/assets/${data.image.filename_disk}`}
             alt={"Card Image"}

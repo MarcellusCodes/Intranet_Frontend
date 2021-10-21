@@ -1,29 +1,28 @@
 import * as React from "react";
 import Navbar from "../src/components/elements/nav/navbar";
 import NavigationLayout from "../src/components/navigationLayout";
-import NewReleasesIcon from "@mui/icons-material/NewReleases";
+import VpnKeyIcon from "@mui/icons-material/VpnKey";
 import ThreeDimensionalGrid from "../src/components/elements/layout/threeDimensionalGrid";
-import ActionSection from "../src/components/sections/actionSection";
 import InfoCard from "../src/components/elements/card/infoCard";
 import Grid from "@mui/material/Grid";
 import { useQuery } from "react-query";
 
-export default function Index({ news_data }) {
+export default function Datenschutz({ datenschutz_data }) {
   const { isLoading, data, error } = useQuery(
-    "news_data",
+    "datenschutz_data",
     () =>
-      fetch(`http://localhost:8055/items/rubriken/2?fields=*.*.*`).then((res) =>
+      fetch(`http://localhost:8055/items/rubriken/6?fields=*.*.*`).then((res) =>
         res.json()
       ),
-    { initialData: news_data }
+    { initialData: datenschutz_data }
   );
 
   if (isLoading)
     return (
       <>
         <ActionSection
-          pageIcon={<NewReleasesIcon fontSize="large" />}
-          pageTitle={"NEWS"}
+          pageIcon={<VpnKeyIcon fontSize="large" />}
+          pageTitle={"DATENSCHUTZ"}
           action="loading"
         />
       </>
@@ -33,8 +32,8 @@ export default function Index({ news_data }) {
     return (
       <>
         <ActionSection
-          pageIcon={<NewReleasesIcon fontSize="large" />}
-          pageTitle={"NEWS"}
+          pageIcon={<VpnKeyIcon fontSize="large" />}
+          pageTitle={"DATENSCHUTZ"}
           action="error"
         />
       </>
@@ -43,14 +42,14 @@ export default function Index({ news_data }) {
     <>
       <Navbar />
       <NavigationLayout
-        pageIcon={<NewReleasesIcon fontSize="large" />}
-        pageTitle={"NEWS"}
+        pageIcon={<VpnKeyIcon fontSize="large" />}
+        pageTitle={"DATENSCHUTZ"}
       >
         <ThreeDimensionalGrid>
           {data.data.info_karten.map((data) => (
             <>
-              <Grid item xs={4} sm={10} md={8} lg={7}>
-                <InfoCard data={data} maxContentHeight={250} />
+              <Grid item xs={4} sm={10} md={8} lg={10.5}>
+                <InfoCard data={data} maxContentHeight={300} />
               </Grid>
             </>
           ))}
@@ -58,4 +57,13 @@ export default function Index({ news_data }) {
       </NavigationLayout>
     </>
   );
+}
+
+export async function getServerSideProps() {
+  const res = await fetch(
+    `http://localhost:8055/items/rubriken/6?fields=*.*.*`
+  );
+  const datenschutz_data = await res.json();
+
+  return { props: { datenschutz_data } };
 }

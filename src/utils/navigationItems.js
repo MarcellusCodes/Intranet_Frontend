@@ -40,12 +40,12 @@ const navigationItems = [
       {
         id: 1,
         name: "Fahrpläne",
-        href: "/unter-uns/fahrpläne",
+        href: "/fahrplaene",
       },
       {
         id: 2,
         name: "Telefonlisten",
-        href: "/unter-uns/telefonlisten",
+        href: "/telefonlisten",
       },
     ],
   },
@@ -58,12 +58,12 @@ const navigationItems = [
       {
         id: 1,
         name: "Newsletter",
-        href: "/mitarbeiter/newsletter",
+        href: "/newsletter",
       },
       {
         id: 2,
         name: "Ausschreibung",
-        href: "/mitarbeiter/ausschreibung",
+        href: "/stellenausschreibungen",
       },
       {
         id: 3,
@@ -73,7 +73,7 @@ const navigationItems = [
       {
         id: 4,
         name: "PIK",
-        href: "/mitarbeiter/pik",
+        href: "/pik",
       },
     ],
   },
@@ -100,22 +100,27 @@ const navigationItems = [
       {
         id: 1,
         name: "Datenschutz",
-        href: "/it-datenschutz/datenschutz",
+        href: "/datenschutz",
       },
       {
         id: 2,
         name: "Fernwartung",
-        href: "/it-datenschutz/fernwartung",
+        href: "/fernwartung",
       },
       {
         id: 3,
         name: "Technik",
-        href: "/it-datenschutz/technik",
+        href: "/technik",
       },
       {
         id: 4,
         name: "Meetings abhalten",
-        href: "/it-datenschutz/meetings-abhalten",
+        href: "/meetings",
+      },
+      {
+        id: 5,
+        name: "Excel Schulungen",
+        href: "/excel-schulungen",
       },
     ],
   },
@@ -128,6 +133,13 @@ const navigationItems = [
   },
   {
     id: 10,
+    name: "Betriebsanweisung",
+    href: "/betriebsanweisung",
+    icon: <MenuBookOutlinedIcon />,
+    sub_href: [],
+  },
+  {
+    id: 11,
     name: "Hilfe",
     href: "/hilfe",
     icon: <HelpCenterOutlinedIcon />,

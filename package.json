@@ -21,6 +21,7 @@
     "react": "latest",
     "react-dom": "latest",
     "react-id-swiper": "^4.0.0",
+    "react-pdf": "^5.4.0",
     "react-query": "^3.24.4",
     "react-redux": "^7.2.5",
     "sass": "^1.42.1",

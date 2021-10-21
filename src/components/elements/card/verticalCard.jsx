@@ -39,7 +39,7 @@ const VerticalCard = ({ data }) => {
 
   return (
     <>
-      <Card sx={{ boxShadow: 1 }}>
+      <Card>
         <CardHeader
           title={data.titel}
           sx={{ height: "20%", background: "#222831", color: "#fffffe" }}

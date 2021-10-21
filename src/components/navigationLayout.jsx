@@ -15,7 +15,7 @@ const NavigationLayout = ({ children, pageIcon, pageTitle }) => {
 
   return (
     <>
-      <Container maxWidth="xl">
+      <Container maxWidth="xl" sx={{ paddingBottom: 8}}>
         <SectionTitle>
           {pageIcon}
           {pageTitle}

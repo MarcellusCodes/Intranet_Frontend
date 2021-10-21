@@ -1,9 +1,9 @@
 import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import AnnouncementIcon from "@mui/icons-material/Announcement";
 import Stack from "@mui/material/Stack";
-const AccordionTitle = ({ title }) => {
+
+const AccordionTitle = ({ data }) => {
   return (
     <>
       <AccordionSummary
@@ -12,8 +12,7 @@ const AccordionTitle = ({ title }) => {
         id="panel1a-header"
       >
         <Stack direction="row" alignItems="center" spacing={1}>
-          <AnnouncementIcon sx={{ color: "#E84A5F" }} />
-          <Typography variant="h5">{title}</Typography>
+          <Typography variant="h5">{data.titel}</Typography>
         </Stack>
       </AccordionSummary>
     </>
