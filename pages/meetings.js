@@ -12,7 +12,7 @@ export default function Meetings({ meetings_data }) {
   const { isLoading, data, error } = useQuery(
     "meetings_data",
     () =>
-      fetch(`http://localhost:8055/items/rubriken/17?fields=*.*.*`).then(
+      fetch(`http://192.168.100.60:8055/items/rubriken/17?fields=*.*.*`).then(
         (res) => res.json()
       ),
     { initialData: meetings_data }
@@ -57,7 +57,7 @@ export default function Meetings({ meetings_data }) {
         </ThreeDimensionalGrid>
         <iframe
           style={{ width: "100%", height: "800px", marginTop: "5rem" }}
-          src="http://localhost:8055/assets/19557d34-6df5-4f81-b55c-f11ccf1c769f"
+          src="http://192.168.100.60:8055/assets/19557d34-6df5-4f81-b55c-f11ccf1c769f"
           height="240"
           width="320"
           frameborder="0"
@@ -69,7 +69,7 @@ export default function Meetings({ meetings_data }) {
 
 export async function getServerSideProps() {
   const res = await fetch(
-    `http://localhost:8055/items/rubriken/17?fields=*.*.*`
+    `http://192.168.100.60:8055/items/rubriken/17?fields=*.*.*`
   );
   const meetings_data = await res.json();
 

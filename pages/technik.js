@@ -11,7 +11,7 @@ export default function Telefonlisten({ technik_data }) {
   const { isLoading, data, error } = useQuery(
     "technik_data",
     () =>
-      fetch(`http://localhost:8055/items/rubriken/12?fields=*.*.*`).then(
+      fetch(`http://192.168.100.60:8055/items/rubriken/12?fields=*.*.*`).then(
         (res) => res.json()
       ),
     { initialData: technik_data }
@@ -60,7 +60,7 @@ export default function Telefonlisten({ technik_data }) {
 
 export async function getServerSideProps() {
   const res = await fetch(
-    `http://localhost:8055/items/rubriken/12?fields=*.*.*`
+    `http://192.168.100.60:8055/items/rubriken/12?fields=*.*.*`
   );
   const technik_data = await res.json();
 

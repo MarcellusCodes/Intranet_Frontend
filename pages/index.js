@@ -12,8 +12,8 @@ export default function Index({ news_data }) {
   const { isLoading, data, error } = useQuery(
     "news_data",
     () =>
-      fetch(`http://localhost:8055/items/rubriken/2?fields=*.*.*`).then((res) =>
-        res.json()
+      fetch(`http://192.168.100.60:8055/items/rubriken/2?fields=*.*.*`).then(
+        (res) => res.json()
       ),
     { initialData: news_data }
   );
@@ -58,4 +58,13 @@ export default function Index({ news_data }) {
       </NavigationLayout>
     </>
   );
+}
+
+export async function getServerSideProps() {
+  const res = await fetch(
+    `http://192.168.100.60:8055/items/rubriken/2?fields=*.*.*`
+  );
+  const news_data = await res.json();
+
+  return { props: { news_data } };
 }

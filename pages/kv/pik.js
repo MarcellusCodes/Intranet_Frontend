@@ -1,11 +1,11 @@
 import * as React from "react";
-import Navbar from "../src/components/elements/nav/navbar";
-import NavigationLayout from "../src/components/navigationLayout";
+import Navbar from "../../src/components/elements/nav/navbar";
+import NavigationLayout from "../../src/components/navigationLayout";
 import SupervisorAccountOutlinedIcon from "@mui/icons-material/SupervisorAccountOutlined";
-import ThreeDimensionalGrid from "../src/components/elements/layout/threeDimensionalGrid";
-import FourDimensionalGrid from "../src/components/elements/layout/fourDimensionalGrid";
-import InfoCard from "../src/components/elements/card/infoCard";
-import VerticalCard from "../src/components/elements/card/verticalCard";
+import ThreeDimensionalGrid from "../../src/components/elements/layout/threeDimensionalGrid";
+import FourDimensionalGrid from "../../src/components/elements/layout/fourDimensionalGrid";
+import InfoCard from "../../src/components/elements/card/infoCard";
+import VerticalCard from "../../src/components/elements/card/verticalCard";
 import Grid from "@mui/material/Grid";
 import { useQuery } from "react-query";
 
@@ -13,8 +13,8 @@ export default function Pik({ pik_data }) {
   const { isLoading, data, error } = useQuery(
     "pik_data",
     () =>
-      fetch(`http://localhost:8055/items/rubriken/7?fields=*.*.*`).then((res) =>
-        res.json()
+      fetch(`http://192.168.100.60:8055/items/rubriken/7?fields=*.*.*`).then(
+        (res) => res.json()
       ),
     { initialData: pik_data }
   );
@@ -70,7 +70,7 @@ export default function Pik({ pik_data }) {
 
 export async function getServerSideProps() {
   const res = await fetch(
-    `http://localhost:8055/items/rubriken/7?fields=*.*.*`
+    `http://192.168.100.60:8055/items/rubriken/7?fields=*.*.*`
   );
   const pik_data = await res.json();
 

@@ -1,10 +1,10 @@
 import * as React from "react";
-import Navbar from "../src/components/elements/nav/navbar";
-import NavigationLayout from "../src/components/navigationLayout";
+import Navbar from "../../src/components/elements/nav/navbar";
+import NavigationLayout from "../../src/components/navigationLayout";
 import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
-import ThreeDimensionalGrid from "../src/components/elements/layout/threeDimensionalGrid";
-import InfoCard from "../src/components/elements/card/infoCard";
-import ActionSection from "../src/components/sections/actionSection";
+import ThreeDimensionalGrid from "../../src/components/elements/layout/threeDimensionalGrid";
+import InfoCard from "../../src/components/elements/card/infoCard";
+import ActionSection from "../../src/components/sections/actionSection";
 import Grid from "@mui/material/Grid";
 import { useQuery } from "react-query";
 
@@ -12,7 +12,7 @@ export default function Hausordnung({ hausordnung_data }) {
   const { isLoading, data, error } = useQuery(
     "hausordnung_data",
     () =>
-      fetch(`http://localhost:8055/items/rubriken/14?fields=*.*.*`).then(
+      fetch(`http://192.168.100.60:8055/items/rubriken/14?fields=*.*.*`).then(
         (res) => res.json()
       ),
     { initialData: hausordnung_data }
@@ -62,7 +62,7 @@ export default function Hausordnung({ hausordnung_data }) {
 
 export async function getServerSideProps() {
   const res = await fetch(
-    `http://localhost:8055/items/rubriken/14?fields=*.*.*`
+    `http://192.168.100.60:8055/items/rubriken/14?fields=*.*.*`
   );
   const hausordnung_data = await res.json();
 

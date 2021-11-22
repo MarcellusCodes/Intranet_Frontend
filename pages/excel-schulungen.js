@@ -13,7 +13,7 @@ export default function ExcelSchulungen({ excel_schulung_data }) {
   const { isLoading, data, error } = useQuery(
     "excel_schulung_data",
     () =>
-      fetch(`http://localhost:8055/items/rubriken/10?fields=*.*.*`).then(
+      fetch(`http://192.168.100.60:8055/items/rubriken/10?fields=*.*.*`).then(
         (res) => res.json()
       ),
     { initialData: excel_schulung_data }
@@ -63,7 +63,7 @@ export default function ExcelSchulungen({ excel_schulung_data }) {
 
 export async function getServerSideProps() {
   const res = await fetch(
-    `http://localhost:8055/items/rubriken/10?fields=*.*.*`
+    `http://192.168.100.60:8055/items/rubriken/10?fields=*.*.*`
   );
   const excel_schulungen_data = await res.json();
 

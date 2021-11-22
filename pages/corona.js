@@ -15,7 +15,7 @@ export default function Corona({ corona_data }) {
   const { isLoading, data, error } = useQuery(
     "corona_data",
     () =>
-      fetch(`http://localhost:8055/items/rubriken/8?fields=*.*.*`).then((res) =>
+      fetch(`http://192.168.100.60:8055/items/rubriken/8?fields=*.*.*`).then((res) =>
         res.json()
       ),
     { initialData: corona_data }
@@ -87,7 +87,7 @@ export default function Corona({ corona_data }) {
 
 export async function getServerSideProps() {
   const res = await fetch(
-    `http://localhost:8055/items/rubriken/8?fields=*.*.*`
+    `http://192.168.100.60:8055/items/rubriken/8?fields=*.*.*`
   );
   const corona_data = await res.json();
 

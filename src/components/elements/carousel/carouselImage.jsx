@@ -4,7 +4,7 @@ const CarouselImage = ({ src, alt }) => {
   return (
     <>
       <Image
-        src={`http://localhost:8055${src}`}
+        src={`http://192.168.100.60:8055${src}`}
         alt={alt}
         objectFit="cover"
         width="900px"

@@ -12,7 +12,7 @@ export default function Fernwartung({ fernwartung_data }) {
   const { isLoading, data, error } = useQuery(
     "fernwartung_data",
     () =>
-      fetch(`http://localhost:8055/items/rubriken/16?fields=*.*.*`).then(
+      fetch(`http://192.168.100.60:8055/items/rubriken/16?fields=*.*.*`).then(
         (res) => res.json()
       ),
     { initialData: fernwartung_data }
@@ -62,7 +62,7 @@ export default function Fernwartung({ fernwartung_data }) {
 
 export async function getServerSideProps() {
   const res = await fetch(
-    `http://localhost:8055/items/rubriken/16?fields=*.*.*`
+    `http://192.168.100.60:8055/items/rubriken/16?fields=*.*.*`
   );
   const fernwartung_data = await res.json();
 

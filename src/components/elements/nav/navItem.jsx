@@ -3,7 +3,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 
-const NavItem = ({ name, href, icon }) => {
+const NavItem = ({ name, href, icon, sub_href }) => {
   return (
     <>
       <Link href={href}>

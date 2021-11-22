@@ -11,7 +11,7 @@ export default function Datenschutz({ datenschutz_data }) {
   const { isLoading, data, error } = useQuery(
     "datenschutz_data",
     () =>
-      fetch(`http://localhost:8055/items/rubriken/6?fields=*.*.*`).then((res) =>
+      fetch(`http://192.168.100.60:8055/items/rubriken/6?fields=*.*.*`).then((res) =>
         res.json()
       ),
     { initialData: datenschutz_data }
@@ -61,7 +61,7 @@ export default function Datenschutz({ datenschutz_data }) {
 
 export async function getServerSideProps() {
   const res = await fetch(
-    `http://localhost:8055/items/rubriken/6?fields=*.*.*`
+    `http://192.168.100.60:8055/items/rubriken/6?fields=*.*.*`
   );
   const datenschutz_data = await res.json();
 

@@ -11,7 +11,7 @@ export default function Telefonlisten({ telefonlisten_data }) {
   const { isLoading, data, error } = useQuery(
     "telefonlisten_data",
     () =>
-      fetch(`http://localhost:8055/items/rubriken/5?fields=*.*.*`).then((res) =>
+      fetch(`http://192.168.100.60:8055/items/rubriken/5?fields=*.*.*`).then((res) =>
         res.json()
       ),
     { initialData: telefonlisten_data }
@@ -61,7 +61,7 @@ export default function Telefonlisten({ telefonlisten_data }) {
 
 export async function getServerSideProps() {
   const res = await fetch(
-    `http://localhost:8055/items/rubriken/5?fields=*.*.*`
+    `http://192.168.100.60:8055/items/rubriken/5?fields=*.*.*`
   );
   const telefonlisten_data = await res.json();
 

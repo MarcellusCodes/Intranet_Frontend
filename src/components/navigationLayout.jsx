@@ -8,6 +8,7 @@ import ModalMain from "../components/elements/modal/modalMain";
 import ModalSection from "../components/elements/modal/modalSection";
 import Content from "./content";
 import createMarkUp from "../utils/createMarkUp";
+import Head from "next/head";
 
 const NavigationLayout = ({ children, pageIcon, pageTitle }) => {
   const title = useSelector(selectTitle);
@@ -15,7 +16,15 @@ const NavigationLayout = ({ children, pageIcon, pageTitle }) => {
 
   return (
     <>
-      <Container maxWidth="xl" sx={{ paddingBottom: 8}}>
+      <Container maxWidth="xl" sx={{ paddingBottom: 8 }}>
+        <Head>
+          <title>Intranet {pageTitle}</title>
+          <link rel="shortcut icon" href="/favicon.png" />
+          <meta
+            name="viewport"
+            content="initial-scale=1.0, width=device-width"
+          />
+        </Head>
         <SectionTitle>
           {pageIcon}
           {pageTitle}
@@ -29,7 +38,13 @@ const NavigationLayout = ({ children, pageIcon, pageTitle }) => {
             borderRadius: 1,
           }}
         >
-          <Breadcrumbs useDefaultStyle rootLabel="Home" />
+          <Breadcrumbs
+            useDefaultStyle
+            rootLabel="Home"
+            transformLabel={(title) =>
+              title.charAt(0).toUpperCase() + title.slice(1)
+            }
+          />
         </Box>
         <ModalMain
           title={title}

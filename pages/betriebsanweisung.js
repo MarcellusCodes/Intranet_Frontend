@@ -12,7 +12,7 @@ export default function Betriebsanweisung({ betriebsanweisung_data }) {
   const { isLoading, data, error } = useQuery(
     "betriebsanweisung_data",
     () =>
-      fetch(`http://localhost:8055/items/rubriken/15?fields=*.*.*`).then(
+      fetch(`http://192.168.100.60:8055/items/rubriken/15?fields=*.*.*`).then(
         (res) => res.json()
       ),
     { initialData: betriebsanweisung_data }
@@ -28,7 +28,6 @@ export default function Betriebsanweisung({ betriebsanweisung_data }) {
         />
       </>
     );
-
   if (error)
     return (
       <>
@@ -62,7 +61,7 @@ export default function Betriebsanweisung({ betriebsanweisung_data }) {
 
 export async function getServerSideProps() {
   const res = await fetch(
-    `http://localhost:8055/items/rubriken/15?fields=*.*.*`
+    `http://192.168.100.60:8055/items/rubriken/15?fields=*.*.*`
   );
   const betriebsanweisung_data = await res.json();
 

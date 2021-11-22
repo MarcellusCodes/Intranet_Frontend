@@ -36,7 +36,6 @@ export default function Navbar() {
   const [drawer, setDrawer] = useState({
     open: false,
   });
-
   const toggleDrawer = (open) => (event) => {
     if (
       event.type === "keydown" &&
@@ -47,7 +46,7 @@ export default function Navbar() {
 
     setDrawer({ open: open });
   };
-
+  console.log(navItems);
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>
@@ -72,13 +71,16 @@ export default function Navbar() {
               onClick={toggleDrawer(true)}
             >
               <MenuIcon />
+              <Typography variant="subtitle1" component="span">
+                Menü
+              </Typography>
             </IconButton>
           </Toolbar>
         </AppBar>
       </Box>
       <div>
         <Drawer
-          anchor={"left"}
+          anchor={"right"}
           open={drawer["open"]}
           onClose={toggleDrawer(false)}
           classes={{ paper: classes.paper }}
@@ -87,7 +89,12 @@ export default function Navbar() {
             <List>
               {navItems.map((item) =>
                 item.sub_href.length === 0 ? (
-                  <NavItem name={item.name} icon={item.icon} href={item.href} />
+                  <NavItem
+                    name={item.name}
+                    icon={item.icon}
+                    href={item.href}
+                    sub_href={item.sub_href}
+                  />
                 ) : (
                   <NavItemDropdown
                     name={item.name}

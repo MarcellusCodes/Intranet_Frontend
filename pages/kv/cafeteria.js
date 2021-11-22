@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import Navbar from "../src/components/elements/nav/navbar";
-import NavigationLayout from "../src/components/navigationLayout";
+import Navbar from "../../src/components/elements/nav/navbar";
+import NavigationLayout from "../../src/components/navigationLayout";
 import RestaurantIcon from "@mui/icons-material/Restaurant";
-import ThreeDimensionalGrid from "../src/components/elements/layout/threeDimensionalGrid";
-import TwoDimensionalGrid from "../src/components/elements/layout/twoDimensionalGrid";
-import HorizontalCard from "../src/components/elements/card/horizontalCard";
-import InfoCard from "../src/components/elements/card/infoCard";
-import PrimaryTitle from "../src/components/elements/typography/primaryTitle";
+import ThreeDimensionalGrid from "../../src/components/elements/layout/threeDimensionalGrid";
+import TwoDimensionalGrid from "../../src/components/elements/layout/twoDimensionalGrid";
+import HorizontalCard from "../../src/components/elements/card/horizontalCard";
+import InfoCard from "../../src/components/elements/card/infoCard";
+import PrimaryTitle from "../../src/components/elements/typography/primaryTitle";
 import Grid from "@mui/material/Grid";
 import Divider from "@mui/material/Divider";
 import { Typography } from "@mui/material";
@@ -26,7 +26,7 @@ export default function Cafeteria({ cafeteria_data }) {
   const { isLoading, data, error } = useQuery(
     "cafeteria_data",
     () =>
-      fetch(`http://localhost:8055/items/rubriken/9?fields=*.*.*`).then((res) =>
+      fetch(`http://192.168.100.60:8055/items/rubriken/9?fields=*.*.*`).then((res) =>
         res.json()
       ),
     { initialData: cafeteria_data }
@@ -88,7 +88,7 @@ export default function Cafeteria({ cafeteria_data }) {
           <Grid item xs={4} sm={8} md={16}>
             <Document
               file={
-                "http://localhost:8055/assets/9e1f5af7-3caf-4e84-8ae3-f161621ca7bf"
+                "http://192.168.100.60:8055/assets/9e1f5af7-3caf-4e84-8ae3-f161621ca7bf"
               }
               onSourceError={(err) =>
                 alert(
@@ -110,7 +110,7 @@ export default function Cafeteria({ cafeteria_data }) {
           <Grid item xs={4} sm={8} md={16}>
             <Document
               file={
-                "http://localhost:8055/assets/9e1f5af7-3caf-4e84-8ae3-f161621ca7bf"
+                "http://192.168.100.60:8055/assets/9e1f5af7-3caf-4e84-8ae3-f161621ca7bf"
               }
               onSourceError={(err) =>
                 alert(
@@ -137,7 +137,7 @@ export default function Cafeteria({ cafeteria_data }) {
 
 export async function getServerSideProps() {
   const res = await fetch(
-    `http://localhost:8055/items/rubriken/9?fields=*.*.*`
+    `http://192.168.100.60:8055/items/rubriken/9?fields=*.*.*`
   );
   const cafeteria_data = await res.json();
 
